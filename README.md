@@ -1,74 +1,74 @@
-# 🎵 Axon - Music Player
+# Axon - Music Player
 
-A modern, feature-rich music player built with **React**, **Vite**, and **Supabase**. Stream your favorite tracks with an intuitive interface, playlist management, and dynamic visual effects.
+A modern, feature-rich music player built with React, Vite, and Supabase. Stream your favorite tracks with an intuitive interface, playlist management, and dynamic visual effects.
 
 **Live Demo:** [Deployed on Vercel](https://music-player-task.vercel.app)
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎵 Core Playback
+### Core Playback
 
-- **HTML5 Audio Streaming** - Seamless playback from Supabase Storage
-- **Play/Pause Controls** - Instant audio control with visual feedback
-- **Next/Previous Navigation** - Skip tracks or restart current track
-- **Progress Tracking** - Interactive progress bar with time display
-- **Volume Control** - Adjustable volume with mute toggle
-- **Audio Visualizer** - Animated equalizer bars while playing
+- HTML5 Audio Streaming - Seamless playback from Supabase Storage
+- Play/Pause Controls - Instant audio control with visual feedback
+- Next/Previous Navigation - Skip tracks or restart current track
+- Progress Tracking - Interactive progress bar with time display
+- Volume Control - Adjustable volume with mute toggle
+- Audio Visualizer - Animated equalizer bars while playing
 
-### 🎛️ Playback Modes
+### Playback Modes
 
-- **Shuffle** - Randomize track order
-- **Repeat Modes** - Off / Repeat All / Repeat One
-- **Keyboard Shortcuts** - Space (play/pause), Arrow Keys (next/prev/volume)
+- Shuffle - Randomize track order
+- Repeat Modes - Off / Repeat All / Repeat One
+- Keyboard Shortcuts - Space (play/pause), Arrow Keys (next/prev/volume)
 
-### 💾 User Features
+### User Features
 
-- **Favourites** - Save favorite tracks (persisted in localStorage)
-- **Recently Played** - Auto-generated history of last 10 tracks (session-based)
-- **Search** - Filter tracks by title in real-time
-- **Sort Options** - Sort by title or duration
+- Favourites - Save favorite tracks (persisted in localStorage)
+- Recently Played - Auto-generated history of last 10 tracks (session-based)
+- Search - Filter tracks by title in real-time
+- Sort Options - Sort by title or duration
 
-### 🎨 UI/UX
+### User Interface
 
-- **Dark Theme** - Sleek dark interface with smooth animations
-- **Dynamic Gradients** - Background colors extracted from album artwork
-- **Responsive Design** - Optimized for mobile, tablet, and desktop
-- **Mini Player** - Compact bottom player bar with quick controls
-- **Empty States** - Elegant empty screens with actionable prompts
+- Dark Theme - Sleek dark interface with smooth animations
+- Dynamic Gradients - Background colors extracted from album artwork
+- Responsive Design - Optimized for mobile, tablet, and desktop
+- Mini Player - Compact bottom player bar with quick controls
+- Empty States - Elegant empty screens with actionable prompts
 
-### 🔐 Authentication
+### Authentication
 
-- **Email/Password Auth** - Secure account creation and login
-- **Google OAuth** - Quick sign-in with Google
-- **Session Persistence** - Stay logged in across browser sessions
+- Email/Password Auth - Secure account creation and login
+- Google OAuth - Quick sign-in with Google
+- Session Persistence - Stay logged in across browser sessions
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- **Node.js** 16+ (includes npm)
-- **Supabase Account** (free tier works)
+- Node.js 16+ (includes npm)
+- Supabase Account (free tier works)
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository
 
    ```bash
    git clone https://github.com/Parthtate/axon.git
    cd axon
    ```
 
-2. **Install dependencies**
+2. Install dependencies
 
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
+3. Set up environment variables
    Create a `.env` file in the root directory:
 
    ```env
@@ -78,7 +78,7 @@ A modern, feature-rich music player built with **React**, **Vite**, and **Supaba
 
    Get these from your [Supabase Dashboard](https://app.supabase.com)
 
-4. **Start development server**
+4. Start development server
    ```bash
    npm run dev
    ```
@@ -86,15 +86,15 @@ A modern, feature-rich music player built with **React**, **Vite**, and **Supaba
 
 ---
 
-## 📦 Setup Supabase
+## Setup Supabase
 
-1. **Create Storage Buckets**
+1. Create Storage Buckets
 
    - Create a bucket named `audio` for music files
    - Create a bucket named `images` for album artwork
    - Set both buckets to **Public**
 
-2. **Upload Media**
+2. Upload Media
 
    ```bash
    npm run build
@@ -102,23 +102,23 @@ A modern, feature-rich music player built with **React**, **Vite**, and **Supaba
 
    Use the Supabase dashboard or the provided upload script to add tracks
 
-3. **Enable Authentication**
+3. Enable Authentication
    - Go to Authentication → Providers
    - Enable Email/Password
    - Enable Google OAuth and add your credentials
 
 ---
 
-## 🎯 Usage
+## Usage
 
 ### For Users
 
-1. **Sign up** with email or Google account
-2. **Browse** all tracks on the home page
-3. **Click any track** to start playing
-4. **Heart icon** to add/remove from favorites
-5. **Search** for specific tracks
-6. **Check History** in Recently Played tab
+1. Sign up with email or Google account
+2. Browse all tracks on the home page
+3. Click any track to start playing
+4. Heart icon to add/remove from favorites
+5. Search for specific tracks
+6. Check History in Recently Played tab
 
 ### For Developers
 
@@ -136,7 +136,7 @@ const MyComponent = () => {
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -174,18 +174,18 @@ src/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Frontend**: React 19, React Router 7
-- **Build Tool**: Vite 7
-- **Styling**: Tailwind CSS 4
-- **Backend**: Supabase (Auth + Storage)
-- **Icons**: React Icons
-- **Deployment**: Vercel
+- Frontend: React 19, React Router 7
+- Build Tool: Vite 7
+- Styling: Tailwind CSS 4
+- Backend: Supabase (Auth + Storage)
+- Icons: React Icons
+- Deployment: Vercel
 
 ---
 
-## 🎓 Key Concepts
+## Key Concepts
 
 ### Global Audio Context
 
@@ -193,31 +193,31 @@ Music continues playing even when navigating between pages thanks to a persisten
 
 ### Dynamic Styling
 
-Album artwork colors are extracted using Canvas API and applied as gradient backgrounds for a immersive visual experience.
+Album artwork colors are extracted using Canvas API and applied as gradient backgrounds for an immersive visual experience.
 
 ### Smart Storage
 
-- **localStorage** - Favorites persist across sessions
-- **sessionStorage** - Recently played clears on browser close
+- localStorage - Favorites persist across sessions
+- sessionStorage - Recently played clears on browser close
 
 ### Keyboard Control
 
-- **Space** - Play/Pause
-- **→** - Next track
-- **←** - Previous track
-- **↑/↓** - Volume up/down
+- Space - Play/Pause
+- Right Arrow - Next track
+- Left Arrow - Previous track
+- Up/Down Arrow - Volume up/down
 
 ---
 
-## 📱 Responsive Breakpoints
+## Responsive Breakpoints
 
-- **Mobile** (<768px) - Hamburger menu, compact player
-- **Tablet** (768-1024px) - Sidebar visible, optimized layout
-- **Desktop** (>1024px) - Full sidebar, expanded player
+- Mobile (<768px) - Hamburger menu, compact player
+- Tablet (768-1024px) - Sidebar visible, optimized layout
+- Desktop (>1024px) - Full sidebar, expanded player
 
 ---
 
-## 🔐 Security
+## Security
 
 - Supabase RLS (Row Level Security) policies on tables
 - Public storage buckets for media access
@@ -226,7 +226,7 @@ Album artwork colors are extracted using Canvas API and applied as gradient back
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Audio not playing?
 
@@ -250,36 +250,28 @@ npm run lint        # Check for linting errors
 
 ---
 
-## 📈 Future Enhancements
+## Future Enhancements
 
-- [ ] Playlist creation and management
-- [ ] User library syncing across devices
-- [ ] Offline playback with Service Workers
-- [ ] Audio equalizer with presets
-- [ ] Social sharing features
-- [ ] Dark/Light theme toggle
+- Playlist creation and management
+- User library syncing across devices
+- Offline playback with Service Workers
+- Audio equalizer with presets
+- Social sharing features
+- Dark/Light theme toggle
 
----
-
-## 📄 License
+## License
 
 MIT License - feel free to use this project for personal or commercial purposes.
 
----
+## Author
 
-## 👤 Author
-
-**Parth** - Built with ❤️ for music lovers
+**Parth**
 
 ### Acknowledgments
 
 - Music by [Bensound](https://www.bensound.com/free-music-for-videos) (Royalty Free)
 - Icons by [React Icons](https://react-icons.github.io/react-icons/)
 
----
-
-## 📞 Support
+## Support
 
 Found a bug or have a feature request? Open an issue on GitHub or reach out directly.
-
-Happy listening! 🎧
