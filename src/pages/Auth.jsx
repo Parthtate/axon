@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { IoLogoGoogle } from 'react-icons/io5';
+import authDiagnostics from '../utils/authDiagnostics';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,6 +12,7 @@ const Auth = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
   
   const { signIn, signUp, signInWithProvider } = useAuth();
   const navigate = useNavigate();
@@ -45,7 +47,7 @@ const Auth = () => {
         console.log('✅ Sign up response:', data);
         
         if (data?.user && !data?.session) {
-          setMessage('Check your email to confirm your account');
+          setMessage('✅ Account created! Check your email to confirm your account before signing in.');
           setIsLogin(true);
           setEmail('');
           setPassword('');
@@ -56,14 +58,18 @@ const Auth = () => {
     } catch (err) {
       console.error('❌ Full error object:', err);
       
+      // More detailed error messages
       const errorMessages = {
-        'Invalid login credentials': 'Incorrect email or password. Please try again.',
-        'Email not confirmed': 'Please confirm your email before logging in.',
-        'User already registered': 'An account with this email already exists. Try signing in instead.',
-        'Invalid email or password': 'The email or password you entered is incorrect.',
+        'Invalid login credentials': 'Email not found or incorrect password. Make sure:\n1. You have already signed up\n2. You confirmed your email\n3. Password is correct',
+        'Email not confirmed': '📧 Please confirm your email before logging in.\nCheck your inbox for the confirmation link.',
+        'User already registered': '👤 An account with this email already exists.\nTry signing in instead.',
+        'Invalid email or password': '❌ The email or password you entered is incorrect.',
+        'Signups not allowed for this instance': '🚫 Sign ups are currently disabled. Please contact support.',
+        'Email provider is not enabled': '⚠️ Email authentication is not enabled. Please try Google sign-in instead.',
       };
       
-      setError(errorMessages[err.message] || `Error: ${err.message}`);
+      const errorMsg = errorMessages[err.message] || err.message || 'An unexpected error occurred';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -186,7 +192,44 @@ const Auth = () => {
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
+
+          {/* Diagnostics Button */}
+          <button
+            onClick={() => {
+              setShowDiagnostics(!showDiagnostics);
+              if (!showDiagnostics) {
+                authDiagnostics.runAll();
+              }
+            }}
+            className="block w-full text-yellow-500 hover:text-yellow-400 text-xs transition-colors mt-4"
+            title="Run authentication diagnostics to help troubleshoot issues"
+          >
+            {showDiagnostics ? '❌ Close Diagnostics' : '🔍 Troubleshoot Auth Issues'}
+          </button>
         </div>
+
+        {/* Diagnostics Info */}
+        {showDiagnostics && (
+          <div className="mt-6 p-4 bg-yellow-900/20 border border-yellow-500/30 rounded text-yellow-200 text-xs space-y-2">
+            <p className="font-semibold">📋 Authentication Troubleshooting:</p>
+            <ul className="space-y-1 text-yellow-100">
+              <li>✓ Open Developer Console (F12) to see diagnostics</li>
+              <li>✓ Check if Supabase connection is working</li>
+              <li>✓ Verify Email provider is enabled in Supabase Dashboard</li>
+              <li>✓ Make sure email is confirmed before signing in</li>
+              <li>✓ If stuck, try signing up with a new test email</li>
+            </ul>
+            <p className="text-yellow-300 mt-3">
+              <strong>Common Issue:</strong> "Invalid login credentials" usually means:
+            </p>
+            <ul className="space-y-1">
+              <li>→ User account doesn't exist yet (sign up first)</li>
+              <li>→ Email hasn't been confirmed (check email for link)</li>
+              <li>→ Password is incorrect</li>
+              <li>→ Email provider disabled in Supabase</li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
