@@ -1,74 +1,85 @@
 // src/pages/Auth.jsx
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { IoLogoGoogle } from 'react-icons/io5';
-import authDiagnostics from '../utils/authDiagnostics';
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { IoLogoGoogle } from "react-icons/io5";
+import authDiagnostics from "../utils/authDiagnostics";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [showDiagnostics, setShowDiagnostics] = useState(false);
-  
+
   const { signIn, signUp, signInWithProvider } = useAuth();
   const navigate = useNavigate();
 
   const handleAuth = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setMessage('');
+    setError("");
+    setMessage("");
 
     try {
       if (isLogin) {
-        console.log('🔐 Attempting sign in...');
+        console.log("Attempting sign in...");
         const { data, error } = await signIn(email, password);
-        
+
         if (error) {
-          console.error('❌ Sign in error:', error);
+          console.error(" Sign in error:", error);
           throw error;
         }
-        
-        console.log('✅ Sign in successful:', data);
-        navigate('/');
+
+        console.log(" Sign in successful:", data);
+        navigate("/");
       } else {
-        console.log('📝 Attempting sign up...');
+        console.log(" Attempting sign up...");
         const { error, data } = await signUp(email, password);
-        
+
         if (error) {
-          console.error('❌ Sign up error:', error);
+          console.error(" Sign up error:", error);
           throw error;
         }
-        
-        console.log('✅ Sign up response:', data);
-        
+
+        console.log(" Sign up response:", data);
+
         if (data?.user && !data?.session) {
-          setMessage('✅ Account created! Check your email to confirm your account before signing in.');
+          setMessage(
+            " Account created! Check your email to confirm your account before signing in."
+          );
           setIsLogin(true);
-          setEmail('');
-          setPassword('');
+          setEmail("");
+          setPassword("");
         } else {
-          navigate('/');
+          navigate("/");
         }
       }
     } catch (err) {
-      console.error('❌ Full error object:', err);
-      
+      console.error(" Full error object:", err);
+
       // More detailed error messages
       const errorMessages = {
-        'Invalid login credentials': 'Email not found or incorrect password. Make sure:\n1. You have already signed up\n2. You confirmed your email\n3. Password is correct',
-        'Email not confirmed': '📧 Please confirm your email before logging in.\nCheck your inbox for the confirmation link.',
-        'User already registered': '👤 An account with this email already exists.\nTry signing in instead.',
-        'Invalid email or password': '❌ The email or password you entered is incorrect.',
-        'Signups not allowed for this instance': '🚫 Sign ups are currently disabled. Please contact support.',
-        'Email provider is not enabled': '⚠️ Email authentication is not enabled. Please try Google sign-in instead.',
+        "Invalid login credentials":
+          "Email not found or incorrect password. Make sure:\n1. You have already signed up\n2. You confirmed your email\n3. Password is correct",
+        "Email not confirmed":
+          "📧 Please confirm your email before logging in.\nCheck your inbox for the confirmation link.",
+        "User already registered":
+          "👤 An account with this email already exists.\nTry signing in instead.",
+        "Invalid email or password":
+          " The email or password you entered is incorrect.",
+        "Signups not allowed for this instance":
+          " Sign ups are currently disabled. Please contact support.",
+        "Email provider is not enabled":
+          " Email authentication is not enabled. Please try Google sign-in instead.",
       };
-      
-      const errorMsg = errorMessages[err.message] || err.message || 'An unexpected error occurred';
+
+      const errorMsg =
+        errorMessages[err.message] ||
+        err.message ||
+        "An unexpected error occurred";
       setError(errorMsg);
     } finally {
       setLoading(false);
@@ -77,21 +88,21 @@ const Auth = () => {
 
   const handleSocialLogin = async (provider) => {
     setLoading(true);
-    setError('');
+    setError("");
     console.log(`🔌 Initiating social login with ${provider}...`);
-    
+
     try {
       const { data, error } = await signInWithProvider(provider);
-      
+
       if (error) {
-        console.error(`❌ ${provider} login error:`, error);
+        console.error(` ${provider} login error:`, error);
         throw error;
       }
-      
-      console.log(`✅ ${provider} login initiated`, data);
+
+      console.log(` ${provider} login initiated`, data);
       // Note: Redirect happens automatically
     } catch (err) {
-      console.error(`❌ Social login caught error:`, err);
+      console.error(` Social login caught error:`, err);
       setError(`Failed to sign in with ${provider}: ${err.message}`);
     } finally {
       // Note: If redirect happens, this might not run or be visible
@@ -102,7 +113,6 @@ const Auth = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="w-full max-w-sm px-6">
-        
         {/* Error Message */}
         {error && (
           <div className="mb-4 bg-red-900/20 border border-red-500/30 rounded p-3 text-red-200 text-sm">
@@ -120,7 +130,7 @@ const Auth = () => {
         {/* Social Login Buttons */}
         <div className="space-y-3 mb-6">
           <button
-            onClick={() => handleSocialLogin('google')}
+            onClick={() => handleSocialLogin("google")}
             disabled={loading}
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-700 font-medium py-3 px-4 rounded border border-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -146,7 +156,7 @@ const Auth = () => {
               disabled={loading}
             />
           </div>
-          
+
           {/* Password Input */}
           <div>
             <label className="block text-gray-400 text-sm mb-2">
@@ -170,7 +180,7 @@ const Auth = () => {
             disabled={loading}
             className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-6"
           >
-            {loading ? 'Processing...' : (isLogin ? 'Sign in' : 'Sign up')}
+            {loading ? "Processing..." : isLogin ? "Sign in" : "Sign up"}
           </button>
         </form>
 
@@ -179,18 +189,20 @@ const Auth = () => {
           <button className="block w-full text-gray-400 hover:text-gray-300 text-sm transition-colors">
             Forgot your password?
           </button>
-          
+
           <button
             onClick={() => {
               setIsLogin(!isLogin);
-              setError('');
-              setMessage('');
-              setEmail('');
-              setPassword('');
+              setError("");
+              setMessage("");
+              setEmail("");
+              setPassword("");
             }}
             className="block w-full text-gray-400 hover:text-gray-300 text-sm transition-colors"
           >
-            {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+            {isLogin
+              ? "Don't have an account? Sign up"
+              : "Already have an account? Sign in"}
           </button>
 
           {/* Diagnostics Button */}
@@ -204,7 +216,9 @@ const Auth = () => {
             className="block w-full text-yellow-500 hover:text-yellow-400 text-xs transition-colors mt-4"
             title="Run authentication diagnostics to help troubleshoot issues"
           >
-            {showDiagnostics ? '❌ Close Diagnostics' : '🔍 Troubleshoot Auth Issues'}
+            {showDiagnostics
+              ? " Close Diagnostics"
+              : "🔍 Troubleshoot Auth Issues"}
           </button>
         </div>
 
@@ -220,7 +234,8 @@ const Auth = () => {
               <li>✓ If stuck, try signing up with a new test email</li>
             </ul>
             <p className="text-yellow-300 mt-3">
-              <strong>Common Issue:</strong> "Invalid login credentials" usually means:
+              <strong>Common Issue:</strong> "Invalid login credentials" usually
+              means:
             </p>
             <ul className="space-y-1">
               <li>→ User account doesn't exist yet (sign up first)</li>
