@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io5';
+import { IoLogoGoogle } from 'react-icons/io5';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -120,15 +120,6 @@ const Auth = () => {
           >
             <IoLogoGoogle className="text-xl" />
             <span>Sign in with Google</span>
-          </button>
-          
-          <button
-            onClick={() => handleSocialLogin('github')}
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-700 font-medium py-3 px-4 rounded border border-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <IoLogoGithub className="text-xl" />
-            <span>Sign in with Github</span>
           </button>
         </div>
 

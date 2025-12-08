@@ -40,10 +40,14 @@ export const AudioPlayerProvider = ({ children }) => {
   // Load track when index changes
   useEffect(() => {
     const audio = audioRef.current;
+    
+    // Performance optimization: Preload and specific settings
+    audio.preload = "auto";
+    audio.crossOrigin = "anonymous";
+
     if (!currentTrack) return;
 
     const wasPlaying = isPlaying;
-    const previousTime = audio.currentTime || 0;
     const isSameTrack = audio.src.includes(currentTrack.musicUrl);
 
     // Only reset if it's a new track
@@ -52,6 +56,7 @@ export const AudioPlayerProvider = ({ children }) => {
       audio.src = currentTrack.musicUrl;
       audio.volume = volume;
       setCurrentTime(0);
+      audio.load(); // Explicitly request loading
     }
 
     // Update duration when metadata loads
@@ -64,10 +69,16 @@ export const AudioPlayerProvider = ({ children }) => {
       setIsLoading(false);
       // Only auto-play if we were playing and it's a new track
       if (wasPlaying && !isSameTrack) {
-        audio.play().catch((error) => {
-          console.error("Error playing audio:", error);
-          setIsPlaying(false);
-        });
+        // Use a small timeout to ensure the browser execution stack is clear
+        setTimeout(() => {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    console.error("Auto-play prevented or failed:", error);
+                    setIsPlaying(false);
+                });
+            }
+        }, 0);
       }
     };
 
@@ -82,8 +93,9 @@ export const AudioPlayerProvider = ({ children }) => {
       setCurrentTime(audio.currentTime);
     };
 
+    // Events
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.addEventListener("canplay", handleCanPlay);
+    audio.addEventListener("canplay", handleCanPlay); // Trigger sooner than canplaythrough
     audio.addEventListener("error", handleError);
     audio.addEventListener("timeupdate", handleTimeUpdate);
 
