@@ -1,7 +1,5 @@
-// src/components/AudioPlayer/PlayerControls.jsx
 import { useAudioPlayer } from "../../context/AudioPlayerContext";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import { IoPlaySkipBack, IoPlaySkipForward } from "react-icons/io5";
 import { LuRepeat2 } from "react-icons/lu";
 import { LuRepeat1 } from "react-icons/lu";
 import { TbRepeatOff } from "react-icons/tb";
@@ -30,11 +28,11 @@ const PlayerControls = () => {
   const getRepeatIcon = () => {
     switch (repeatMode) {
       case "one":
-        return <LuRepeat1 />; // Repeat one
+        return <LuRepeat1 />; 
       case "all":
-        return <LuRepeat2 />; // Repeat all
+        return <LuRepeat2 />; 
       default:
-        return <TbRepeatOff />; // No repeat
+        return <TbRepeatOff />; 
     }
   };
 

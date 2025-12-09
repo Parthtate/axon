@@ -4,10 +4,11 @@ import { supabase } from '../conf/supabaseClient';
 
 const AuthContext = createContext({});
 
+
 /**
  * Authentication Provider
  * Manages user authentication state with Supabase
- * Supports: Email/Password, Google OAuth, GitHub OAuth
+ * Supports: Email/Password, Google OAuth
  */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
         const { data: { session } } = await supabase.auth.getSession();
         setUser(session?.user ?? null);
       } catch (error) {
-        console.error('❌ Error checking session:', error);
+        // Silently fail if session check errors
       } finally {
         setLoading(false);
       }
@@ -85,7 +86,6 @@ export const AuthProvider = ({ children }) => {
       if (error) throw error;
       setUser(null);
     } catch (error) {
-      console.error('❌ Error signing out:', error);
       throw error;
     }
   };

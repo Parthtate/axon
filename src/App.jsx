@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 import { AudioPlayerProvider } from "./context/AudioPlayerContext";
 import { FavouritesProvider } from "./context/FavouritesContext";
 import { RecentlyPlayedProvider } from "./context/RecentlyPlayedContext";
-import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { useAudioPlayer } from "./context/AudioPlayerContext";
-import useColorExtractor from "./hooks/useColorExtractor";
 import useKeyboardShortcuts from "./hooks/useKeyboardShortcuts";
 import ErrorBoundary from "./components/UI/ErrorBoundary";
 import Sidebar from "./components/Layout/Sidebar";
@@ -56,9 +54,6 @@ const AppLayout = () => {
     volume,
   } = useAudioPlayer();
 
-  // Dynamic background gradient based on album cover
-  const colors = useColorExtractor(currentTrack?.thumbnail);
-
   // Keyboard shortcuts
   useKeyboardShortcuts({
     onPlayPause: togglePlayPause,
@@ -77,7 +72,7 @@ const AppLayout = () => {
     <div 
       className="min-h-screen transition-all duration-1000 ease-in-out"
       style={{
-        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`
+        background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)'
       }}
     >
       <div className="min-h-screen bg-black bg-opacity-40">
@@ -120,10 +115,9 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <AuthProvider>
-          <ThemeProvider>
-            <FavouritesProvider>
-              <RecentlyPlayedProvider>
-                <AudioPlayerProvider>
+          <FavouritesProvider>
+            <RecentlyPlayedProvider>
+              <AudioPlayerProvider>
                   <Routes>
                     {/* Public Auth Route - No Authentication Required */}
                     <Route path="/auth" element={<Auth />} />
@@ -141,7 +135,6 @@ function App() {
                 </AudioPlayerProvider>
               </RecentlyPlayedProvider>
             </FavouritesProvider>
-          </ThemeProvider>
         </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>

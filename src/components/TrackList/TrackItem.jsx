@@ -1,8 +1,6 @@
-// src/components/TrackList/TrackItem.jsx
 import { useAudioPlayer } from "../../context/AudioPlayerContext";
 import { useFavourites } from "../../context/FavouritesContext";
 import { formatDuration } from "../../utils/dummyData";
-import AudioVisualizer from "../AudioPlayer/AudioVisualizer";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 
@@ -32,9 +30,7 @@ const TrackItem = ({ track, index }) => {
       {/* Track Number / Playing Indicator */}
       <div className="w-8 text-center">
         {isCurrentTrack && isPlaying ? (
-          <div className="scale-50">
-            <AudioVisualizer />
-          </div>
+          <span className="text-green-400 text-xl">▶</span>
         ) : (
           <span className={`${
             isCurrentTrack ? "text-green-400 font-semibold" : "text-gray-400 group-hover:text-white"

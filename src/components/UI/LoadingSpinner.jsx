@@ -1,9 +1,3 @@
-// src/components/UI/LoadingSpinner.jsx
-
-/**
- * Loading spinner for async operations
- * Requirement #16: Loading states for images, audio, and list rendering
- */
 const LoadingSpinner = ({ size = "md", className = "" }) => {
   const sizeClasses = {
     sm: "w-4 h-4",

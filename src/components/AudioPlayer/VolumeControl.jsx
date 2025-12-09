@@ -1,14 +1,9 @@
-// src/components/AudioPlayer/VolumeControl.jsx
 import { useState } from "react";
 import { useAudioPlayer } from "../../context/AudioPlayerContext";
 import { TiVolumeMute } from "react-icons/ti";
 import { IoVolumeLowOutline } from "react-icons/io5";
 import { IoVolumeMediumOutline } from "react-icons/io5";
 
-
-/**
- * Volume control slider with mute toggle
- */
 const VolumeControl = () => {
   const { volume, changeVolume } = useAudioPlayer();
   const [isMuted, setIsMuted] = useState(false);
@@ -48,7 +43,6 @@ const VolumeControl = () => {
         {getVolumeIcon()}
       </button>
 
-      {/* Volume Slider */}
       <input
         type="range"
         min="0"
@@ -58,7 +52,7 @@ const VolumeControl = () => {
         onChange={handleVolumeChange}
         className="w-24 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
         style={{
-          background: `linear-gradient(to right, rgb(34, 197, 94) 0%, rgb(34, 197, 94) ${
+          background: `linear-gradient(to right, rgba(252, 252, 252, 1) 0%, rgb(34, 197, 94) ${
             volume * 100
           }%, rgb(55, 65, 81) ${volume * 100}%, rgb(55, 65, 81) 100%)`,
         }}

@@ -1,6 +1,5 @@
-// src/components/Layout/Sidebar.jsx
-import { NavLink, useNavigate } from "react-router-dom"; // Added useNavigate
-import { useAuth } from "../../context/AuthContext"; // Added useAuth
+import { NavLink, useNavigate } from "react-router-dom"; 
+import { useAuth } from "../../context/AuthContext"; 
 import { useFavourites } from "../../context/FavouritesContext";
 import { useRecentlyPlayed } from "../../context/RecentlyPlayedContext";
 import { GoHomeFill } from "react-icons/go";
@@ -8,16 +7,12 @@ import { LuClock2 } from "react-icons/lu";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { LiaArtstation } from "react-icons/lia";
 import { FcMusic } from "react-icons/fc";
-import { BiLogOut } from "react-icons/bi"; // Icon for logout
+import { BiLogOut } from "react-icons/bi"; 
 
-/**
- * Navigation sidebar
- * Requirement #7: Navigate between tabs without stopping music
- */
 const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
   const { favourites } = useFavourites();
   const { recentlyPlayed } = useRecentlyPlayed();
-  const { signOut } = useAuth(); // Hook for logout
+  const { signOut } = useAuth(); 
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -107,7 +102,7 @@ const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
         <div className="mt-auto mb-6 pt-4 border-t border-gray-800">
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:text-red-300 hover:bg-red-900/10 rounded-lg transition-all"
+            className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:bg-red-900/10 rounded-lg transition-all"
           >
             <span className="text-2xl"><BiLogOut /></span>
             <span className="font-medium">Sign Out</span>
@@ -127,7 +122,7 @@ const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
           >
             Bensound - Royalty Free Music
           </a>
-          <p className="text-xs mt-1 text-gray-600">by Parth</p>
+          <a href="https://github.com/Parthtate/axon" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1 hover:text-gray-300 transition-colors cursor-pointer text-xs mt-2">Github repo</a>
         </div>
       </div>
 

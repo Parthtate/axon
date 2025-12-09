@@ -1,4 +1,3 @@
-// src/pages/Favourites.jsx
 import { useMemo } from "react";
 import { useFavourites } from "../context/FavouritesContext";
 import { tracks } from "../utils/dummyData";
@@ -8,11 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { RiDislikeLine } from "react-icons/ri";
 import { FcLikePlaceholder } from "react-icons/fc";
 
-/**
- * Favourites page
- * Requirement #10: Display favourite tracks from LocalStorage
- * Requirement #15: Elegant empty state
- */
+
+ // Display favourite tracks from LocalStorage
+ 
 const Favourites = () => {
   const { favourites, clearFavourites } = useFavourites();
   const navigate = useNavigate();
@@ -53,8 +50,6 @@ const Favourites = () => {
             {favouriteTracks.length === 1 ? "song" : "songs"}
           </p>
         </div>
-
-        {/* Clear All Button */}
         {favouriteTracks.length > 0 && (
           <button
             onClick={() => {
@@ -68,8 +63,6 @@ const Favourites = () => {
           </button>
         )}
       </div>
-
-      {/* Track List */}
       <div className="bg-gray-800 rounded-lg p-6">
         <TrackList
           tracks={favouriteTracks}

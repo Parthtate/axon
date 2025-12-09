@@ -1,15 +1,9 @@
-// src/pages/RecentlyPlayed.jsx
 import { useRecentlyPlayed } from "../context/RecentlyPlayedContext";
 import TrackList from "../components/TrackList/TrackListContainer";
 import EmptyState from "../components/UI/EmptyState";
 import { useNavigate } from "react-router-dom";
 import { LuClock2 } from "react-icons/lu";
 
-/**
- * Recently Played page
- * Requirement #9: Store last 10 tracks in SessionStorage
- * Requirement #15: Elegant empty state
- */
 const RecentlyPlayed = () => {
   const { recentlyPlayed, clearRecentlyPlayed } = useRecentlyPlayed();
   const navigate = useNavigate();
@@ -36,7 +30,7 @@ const RecentlyPlayed = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold text-white mb-2 flex items-center gap-3">
-            <LuClock2 />Recently Played
+            <LuClock2 /> Recently Played
           </h1>
           <p className="text-gray-400">
             Last {recentlyPlayed.length}{" "}

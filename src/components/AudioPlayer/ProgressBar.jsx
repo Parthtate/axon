@@ -1,10 +1,6 @@
-// src/components/AudioPlayer/ProgressBar.jsx
 import { useAudioPlayer } from "../../context/AudioPlayerContext";
 import { formatDuration } from "../../utils/dummyData";
 
-/**
- * Progress bar with time display - shows current playback position
- */
 const ProgressBar = () => {
   const { currentTime, duration, seekTo } = useAudioPlayer();
 

@@ -1,11 +1,6 @@
-// src/components/UI/ErrorBoundary.jsx
 import React from "react";
 import { BiCommentError } from "react-icons/bi";
 
-/**
- * Error boundary to catch runtime errors
- * Requirement #17: Error boundaries to handle unexpected runtime issues
- */
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +31,7 @@ class ErrorBoundary extends React.Component {
               onClick={() => window.location.reload()}
               className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition"
             >
-              Plese Reload Page
+              Please Reload Page
             </button>
           </div>
         </div>

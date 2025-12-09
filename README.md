@@ -4,11 +4,10 @@ Axon is a modern web-based music player built with React and Supabase, designed 
 
 ## Features
 
-- Email, Google, and GitHub authentication
+- Email, Google authentication via Supabase
 - Protected routes for authenticated users
 - Audio playback with play, pause, previous, next, and volume controls
 - Favourites and recently played track lists
-- Dynamic backgrounds based on the current track artwork
 - Responsive layout for desktop and mobile
 
 ## Tech Stack
@@ -25,7 +24,7 @@ Axon is a modern web-based music player built with React and Supabase, designed 
 
 - Node.js 18 or later
 - A Supabase project with:
-  - Auth enabled (Email, Google, GitHub as needed)
+  - Auth enabled (Email, Google as needed)
   - Public storage buckets for `audio` and `images`
 
 ### Installation

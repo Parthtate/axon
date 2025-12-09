@@ -1,4 +1,3 @@
-// src/components/TrackListContainer/TrackListContainer.jsx
 import { useState, useMemo } from "react";
 import TrackItem from "./TrackItem";
 import SearchBar from "./SearchBar";
@@ -7,11 +6,6 @@ import EmptyState from "../UI/EmptyState";
 import { IoSearchSharp } from "react-icons/io5";
 
 
-/**
- * Track list container with search and sort
- * Requirement #8: Search functionality
- * Bonus: Sorting options
- */
 const TrackListContainer = ({ tracks, showSearch = true, emptyState }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");

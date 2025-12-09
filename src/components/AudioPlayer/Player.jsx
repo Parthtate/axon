@@ -1,4 +1,3 @@
-// src/components/AudioPlayer/Player.jsx
 import { useAudioPlayer } from "../../context/AudioPlayerContext";
 import { useFavourites } from "../../context/FavouritesContext";
 import PlayerControls from "./PlayerControls";
@@ -20,9 +19,7 @@ const Player = () => {
 
   return (
     <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
-      {/* Album Art & Info */}
       <div className="flex items-center gap-6 mb-6">
-        {/* Album Cover */}
         <div className="relative group">
           <img
             src={currentTrack.thumbnail}
@@ -33,7 +30,6 @@ const Player = () => {
           />
         </div>
 
-        {/* Track Info */}
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-white mb-1">
             {currentTrack.title}
@@ -42,7 +38,6 @@ const Player = () => {
             {currentTrack.artistName || "Unknown Artist"}
           </p>
 
-          {/* Favourite Button */}
           <button
             onClick={() => toggleFavourite(currentTrack.id)}
             className="mt-3 text-2xl hover:scale-110 transition-transform"
@@ -53,17 +48,14 @@ const Player = () => {
         </div>
       </div>
 
-      {/* Progress Bar */}
       <div className="mb-6">
         <ProgressBar />
       </div>
 
-      {/* Player Controls */}
       <div className="mb-4">
         <PlayerControls />
       </div>
 
-      {/* Volume Control */}
       <div className="flex justify-center">
         <VolumeControl />
       </div>

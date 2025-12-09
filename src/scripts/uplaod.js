@@ -29,7 +29,7 @@ async function uploadFolder(folderName, bucketName, contentType) {
       .list('', { search: file });
 
     if (existing && existing.length > 0) {
-      console.log(`⚠️  Skipped (exists): ${file}`);
+      console.log(`Skipped (exists): ${file}`);
       continue;
     }
 
@@ -42,9 +42,9 @@ async function uploadFolder(folderName, bucketName, contentType) {
       });
 
     if (error) {
-      console.error(`❌ Error ${file}:`, error.message);
+      console.error(`Error ${file}:`, error.message);
     } else {
-      console.log(`✅ Uploaded: ${file}`);
+      console.log(`Uploaded: ${file}`);
     }
   }
 }
@@ -52,7 +52,7 @@ async function uploadFolder(folderName, bucketName, contentType) {
 async function main() {
   await uploadFolder('images', 'images', 'image/webp');
   await uploadFolder('audio', 'audio', 'audio/mpeg');
-  console.log('🎉 All uploads complete!');
+  console.log('All uploads complete!');
 }
 
 main();
