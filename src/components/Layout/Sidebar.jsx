@@ -104,7 +104,7 @@ const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
             onClick={handleSignOut}
             className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:bg-red-900/10 rounded-lg transition-all"
           >
-            <span className="text-2xl"><PiSignOutBold /></span>
+            <span className="text-2xl"><PiSignOutBold />Sign Out</span>
           </button>
         </div>
 
