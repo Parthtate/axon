@@ -1,11 +1,6 @@
-// src/components/TrackList/SearchBar.jsx
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
-/**
- * Search bar with clear button
- * Requirement #8: Search functionality based on track title
- */
 const SearchBar = ({ onSearch, placeholder = "Search tracks..." }) => {
   const [query, setQuery] = useState("");
 
@@ -22,12 +17,10 @@ const SearchBar = ({ onSearch, placeholder = "Search tracks..." }) => {
 
   return (
     <div className="relative">
-      {/* Search Icon */}
       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">
         <IoSearchSharp />
       </span>
 
-      {/* Search Input */}
       <input
         type="text"
         value={query}
@@ -36,7 +29,6 @@ const SearchBar = ({ onSearch, placeholder = "Search tracks..." }) => {
         className="w-full bg-gray-800 text-white placeholder-gray-500 pl-12 pr-12 py-3 rounded-lg focus:outline-none transition"
       />
 
-      {/* Clear Button */}
       {query && (
         <button
           onClick={handleClear}

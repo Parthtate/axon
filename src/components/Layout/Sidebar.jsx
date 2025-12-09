@@ -7,7 +7,7 @@ import { LuClock2 } from "react-icons/lu";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { LiaArtstation } from "react-icons/lia";
 import { FcMusic } from "react-icons/fc";
-import { BiLogOut } from "react-icons/bi"; 
+import { PiSignOutBold } from "react-icons/pi";
 
 const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
   const { favourites } = useFavourites();
@@ -85,7 +85,7 @@ const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
                     <span
                       className={`text-xs px-2 py-1 rounded-full ${
                         isActive
-                          ? "bg-black bg-opacity-20 text-black"
+                          ? "bg-green-700 text-white"
                           : "bg-gray-800 text-gray-400"
                       }`}
                     >
@@ -104,8 +104,7 @@ const Sidebar = ({ isMobileMenuOpen, closeMobileMenu }) => {
             onClick={handleSignOut}
             className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:bg-red-900/10 rounded-lg transition-all"
           >
-            <span className="text-2xl"><BiLogOut /></span>
-            <span className="font-medium">Sign Out</span>
+            <span className="text-2xl"><PiSignOutBold /></span>
           </button>
         </div>
 
