@@ -52,9 +52,9 @@ const VolumeControl = () => {
         onChange={handleVolumeChange}
         className="w-24 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
         style={{
-          background: `linear-gradient(to right, rgba(252, 252, 252, 1) 0%, rgb(34, 197, 94) ${
+          background: `linear-gradient(to right, #22c55e 0%, #22c55e ${
             volume * 100
-          }%, rgb(55, 65, 81) ${volume * 100}%, rgb(55, 65, 81) 100%)`,
+          }%, #374151 ${volume * 100}%, #374151 100%)`,
         }}
       />
     </div>
